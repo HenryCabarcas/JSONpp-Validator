@@ -145,7 +145,7 @@ Ok, so pretty, but how fast?. Well, a very inaccurate way to tell you is <b>very
 | Ram              | 12GB DDR3 @1600MHz                   |
 | Disk             | 250GB SSD Samsung EVO 850 @560Mb/s   |
 
-With those specs and parsing 10000 times the json files stored in the [tests](/tests) directory, I get (some of them):
+With those specs and parsing 10000 times the json files stored in the [tests](/tests) directory and using the [draft7](/tests/draft7) folder from the [JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite); some values I get (some of them) are:
 
 - with GCC 8.1.0:
   
