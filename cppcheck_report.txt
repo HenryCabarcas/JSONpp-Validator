@@ -1,0 +1,56 @@
+src/Jsonpp_Validator.hpp:137:8: performance:inconclusive: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+  bool VerifyIsJson(const char *filepath);
+       ^
+src/Jsonpp_Validator.hpp:189:25: note: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace).
+ inline bool Validator::VerifyIsJson(const char *filepath)
+                        ^
+src/Jsonpp_Validator.hpp:137:8: note: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace).
+  bool VerifyIsJson(const char *filepath);
+       ^
+src/Jsonpp_Validator.hpp:72:3: style: Class 'Validator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  Validator(const char *filepath, bool verifyFileExtension = true);
+  ^
+src/Jsonpp_Validator.hpp:77:3: style: Class 'Validator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  Validator(char *buffer) { CheckFromBuffer(buffer); }
+  ^
+src/Jsonpp_Validator.hpp:192:26: style: Unsigned expression 'f.find(".json")' can't be negative so it is unnecessary to test it. [unsignedPositive]
+  return f.find(".json") >= 0 ? true : false;
+                         ^
+tests/benchmark/benchmark.cpp:22:36: style: The scope of the variable 'actual' can be reduced. [variableScope]
+  long double t_accumulated = 0.0, actual = 0.0, max = 0.0, min = 1.0e8;
+                                   ^
+tests/benckmark-2/benckmark-2.cpp:31:38: style: The scope of the variable 'actual' can be reduced. [variableScope]
+    long double t_accumulated = 0.0, actual = 0.0, max = 0.0, min = 1.0e8;
+                                     ^
+tests/benckmark-2/benckmark-2.cpp:31:45: style: Variable 'actual' is assigned a value that is never used. [unreadVariable]
+    long double t_accumulated = 0.0, actual = 0.0, max = 0.0, min = 1.0e8;
+                                            ^
+tests/benckmark-2/benckmark-2.cpp:33:15: style: Variable 'time' is assigned a value that is never used. [unreadVariable]
+    auto time = std::chrono::high_resolution_clock::now();
+              ^
+tests/benckmark-2/benckmark-2.cpp:26:19: style: Unused variable: infile [unusedVariable]
+    std::ifstream infile;                   // Opens the list file
+                  ^
+tests/benckmark-2/benckmark-2.cpp:27:17: style: Unused variable: line [unusedVariable]
+    std::string line;                       // Stores one line of the list file
+                ^
+tests/simple_verification.cpp:64:2: style: Statements following return, break, continue, goto or throw will never be executed. [unreachableCode]
+ std::JSON handler;
+ ^
+tests/simple_verification.cpp:32:34: style: The scope of the variable 'actual' can be reduced. [variableScope]
+  double last = 0.0, acum = 0.0, actual = 0.0, max = 0.0, min = 1e9;
+                                 ^
+tests/simple_verification.cpp:20:23: style: Variable 'MAX_LENGTH' is assigned a value that is never used. [unreadVariable]
+ const int MAX_LENGTH = 52428800;
+                      ^
+tests/simple_verification.cpp:22:12: style: Variable 'lines' is assigned a value that is never used. [unreadVariable]
+ int lines = 0;
+           ^
+tests/simple_verification.cpp:24:12: style: Variable 'time' is assigned a value that is never used. [unreadVariable]
+ auto time = hClock();
+           ^
+tests/simple_verification.cpp:15:0: style: The function 'log' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+
