@@ -57,6 +57,3 @@ draft7/refRemote.json
 draft7/required.json
 draft7/type.json
 draft7/uniqueItems.json
-test.json
-test-with-errors.json
-catalog.json

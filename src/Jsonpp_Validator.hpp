@@ -48,6 +48,8 @@ namespace json
 {
 	std::string toLow(std::string value);
 	std::string toUp(std::string value);
+	char *str2json(const char *value);
+	char *str2json(std::string value);
 	/**  @brief Infile json possible operations  */
 	enum class jsonOperations
 	{
@@ -119,7 +121,11 @@ namespace json
 		 * @return int 
 		 */
 		int GetErrorPos() const { return errorPos; }
-
+		/**
+		 * @brief Get the Expected values in the error position
+		 * @return std::vector<const char *> of expected values
+		 */
+		std::vector<const char *> GetExpected() const { return expectedValues; }
 		const short int error = -1; // Default error value
 	private:
 		/**
@@ -141,7 +147,7 @@ namespace json
 		bool parseComments();
 		std::string errorDescription = "This is a valid JSON",					   // Description of error in case of one
 			filename = "none";													   // Last file validated name
-		std::vector<const char *> expectedValues;								   // Values to be expected in the error instance
+		std::vector<const char *> expectedValues = {"none"};					   // Values to be expected in the error instance
 		long int idx = -1,														   // Buffer index and
 			size = 0;															   // Buffer size
 		int actualChar = 0, keyLevels = 0, levels = 0, limit = 0, actualParam = 0; // Temporal use variable
@@ -167,7 +173,14 @@ namespace json
 			i = toupper(i);
 		return value;
 	}
-
+	inline char *str2json(const char *value)
+	{
+		return _strdup(value);
+	}
+	inline char *str2json(std::string value)
+	{
+		return _strdup(value.c_str());
+	}
 	inline Validator::Validator(const char *filepath, bool verifyFileExtension)
 	{
 		CheckFromFile(filepath, verifyFileExtension);
@@ -191,6 +204,7 @@ namespace json
 				return CheckFromBuffer();
 			}
 			errorDescription = "File has no '.json' extension, verify the path or deactivate the extension verification flag\n";
+			expectedValues = {".json extension"};
 			return fileIsValid = false;
 		}
 		Buffer = readFile(path, &size);

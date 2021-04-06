@@ -1,4 +1,4 @@
-#include "../../src/Jsonpp_Validator.hpp"
+#include "../../src/JSONpp_Validator.hpp"
 #include <chrono>
 #include <sstream>
 
@@ -55,6 +55,7 @@ int main()
 				  << ", Files per second: " << 1000.f / (t_accumulated / it_num)
 				  << '\n';
 	}
+	system("pause");
 
 	return 0;
 }

@@ -461,7 +461,7 @@
   {
     "description": "naive replacement of $ref with its destination is not correct",
     "schema": {
-      "definitions": {
+      "definitions": {,
         "a_string": { "type": "string" }
       },
       "enum": [{ "$ref": "#/definitions/a_string" }]
