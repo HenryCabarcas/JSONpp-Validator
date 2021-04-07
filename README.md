@@ -1,5 +1,9 @@
 # JSONpp Validator
 
+[![MSBuild](https://github.com/nerdtronik/JSONpp-Validator/actions/workflows/msbuild.yml/badge.svg?branch=main)](https://github.com/nerdtronik/JSONpp-Validator/actions/workflows/msbuild.yml)
+[![clang](https://github.com/nerdtronik/JSONpp-Validator/actions/workflows/clang.yml/badge.svg?branch=main)](https://github.com/nerdtronik/JSONpp-Validator/actions/workflows/clang.yml)
+[![g++](https://github.com/nerdtronik/JSONpp-Validator/actions/workflows/g++.yml/badge.svg?branch=main)](https://github.com/nerdtronik/JSONpp-Validator/actions/workflows/g++.yml)
+
 This is a simple JSON validator for C++11 and up with some very useful features, but first don't forget to include your headers 😊:
 
 ```cpp
