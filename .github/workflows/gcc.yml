@@ -13,6 +13,6 @@ jobs:
     - name: install
       run: sudo apt install gcc g++ make -y
     - name: build
-      run: g++ main.cpp -o main.out
+      run: g++ main.cpp -o main.out -Wall -Wextra -std=c++11
     - name: run
       run: ./main.out
