@@ -495,9 +495,42 @@ namespace json
 				switch (actualH)
 				{
 				case ',':
+				{
+					ParseString();
+					bool x = true;
+					while (x)
+					{
+						idx++;
+						if (Buffer[idx] == ':' || Buffer[idx] == ']' || Buffer[idx] == '\n')
+						{
+							x = false;
+						}
+						else if (Buffer[idx] == '}')
+						{
+							if (lastOperation == jsonOperations::objOpen)
+							{
+								Log();
+								errorDescription += "Expected -> 'Definition'\n";
+								expectedValues = {"Definition"};
+								return fileIsValid = false;
+							}
+							x = false;
+						}
+						else if (Buffer[idx] == ',' && lastOperation == jsonOperations::objOpen)
+						{
+							Log();
+							errorDescription += "Expected -> 'Definition'\n";
+							expectedValues = {"Definition"};
+							return fileIsValid = false;
+						}
+					}
+					idx--;
+					break;
+				}
 				case '{':
 				case '[':
 				case ':':
+					ParseString();
 					break;
 				case '}':
 				case ']':
@@ -509,10 +542,10 @@ namespace json
 					return fileIsValid = false;
 				}
 				default:
+					ParseString();
 					break;
 				}
 				actualH = '\"';
-				ParseString();
 				break;
 			}
 			case '{':
@@ -520,14 +553,20 @@ namespace json
 				if (arrayLevel.size() > 0)
 					if (arrayLevel.back() >= 0)
 						arrayLevel.back()++;
-				lastOperation = jsonOperations::objOpen;
 				switch (actualH)
 				{
 				case ',':
-				case '{':
+					if (lastOperation == jsonOperations::objOpen)
+					{
+						Log();
+						errorDescription += "Expected -> 'Definition'\n";
+						expectedValues = {"Definition"};
+						return fileIsValid = false;
+					}
 				case '[':
 				case ':':
 					break;
+				case '{':
 				case '}':
 				case ']':
 				case '\"':
@@ -540,6 +579,7 @@ namespace json
 				default:
 					break;
 				}
+				lastOperation = jsonOperations::objOpen;
 				actualH = '{';
 				keyLevels++;
 				break;
@@ -581,14 +621,20 @@ namespace json
 			case '[':
 			{
 				arrayLevel.push_back(0);
-				lastOperation = jsonOperations::arrayOpen;
 				switch (actualH)
 				{
 				case ',':
-				case '{':
+					if (lastOperation == jsonOperations::objOpen)
+					{
+						Log();
+						errorDescription += "Expected -> 'Definition'\n";
+						expectedValues = {"Definition"};
+						return fileIsValid = false;
+					}
 				case '[':
 				case ':':
 					break;
+				case '{':
 				case '}':
 				case ']':
 				case '\"':
@@ -599,6 +645,7 @@ namespace json
 				default:
 					break;
 				}
+				lastOperation = jsonOperations::arrayOpen;
 				actualH = '[';
 				levels++;
 				break;
@@ -692,8 +739,15 @@ namespace json
 			{
 				switch (actualH)
 				{
-				case '[':
 				case ',':
+					if (lastOperation == jsonOperations::objOpen)
+					{
+						Log();
+						errorDescription += "Expected -> 'Definition'\n";
+						expectedValues = {"Definition"};
+						return fileIsValid = false;
+					}
+				case '[':
 				case ':':
 					break;
 				case '\"':
@@ -727,8 +781,15 @@ namespace json
 			{
 				switch (actualH)
 				{
-				case '[':
 				case ',':
+					if (lastOperation == jsonOperations::objOpen)
+					{
+						Log();
+						errorDescription += "Expected -> 'Definition'\n";
+						expectedValues = {"Definition"};
+						return fileIsValid = false;
+					}
+				case '[':
 				case ':':
 					break;
 				case '\"':
@@ -766,8 +827,15 @@ namespace json
 			{
 				switch (actualH)
 				{
-				case '[':
 				case ',':
+					if (lastOperation == jsonOperations::objOpen)
+					{
+						Log();
+						errorDescription += "Expected -> 'Definition'\n";
+						expectedValues = {"Definition"};
+						return fileIsValid = false;
+					}
+				case '[':
 				case ':':
 					break;
 				case '\"':
