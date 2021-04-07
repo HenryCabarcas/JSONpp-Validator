@@ -12,13 +12,28 @@
 #ifndef _JSON_VALIDATOR_
 #define _JSON_VALIDATOR_
 
-//#include <sstream>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstring>
 
+#if defined(__clang__)
+
+#define _POSIX_C_SOURCE
+#define _POSIX_SOURCE
+#include <cstring>
+#define JSON(...) strdup(#__VA_ARGS__);
+
+#elif defined(__GNUC__) || defined(__GNUG__)
+
+#include <cstring>
+#define JSON(...) strdup(#__VA_ARGS__);
+
+#elif defined(_MSC_VER)
+
+#include <cstring>
 #define JSON(...) _strdup(#__VA_ARGS__);
+
+#endif
 
 #ifndef _FILE_READER_
 #define _FILE_READER_
@@ -173,6 +188,19 @@ namespace json
 			i = toupper(i);
 		return value;
 	}
+
+#if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
+
+	inline char *str2json(const char *value)
+	{
+		return strdup(value);
+	}
+	inline char *str2json(std::string value)
+	{
+		return strdup(value.c_str());
+	}
+#elif defined(_MSC_VER)
+
 	inline char *str2json(const char *value)
 	{
 		return _strdup(value);
@@ -181,6 +209,8 @@ namespace json
 	{
 		return _strdup(value.c_str());
 	}
+#endif
+
 	inline Validator::Validator(const char *filepath, bool verifyFileExtension)
 	{
 		CheckFromFile(filepath, verifyFileExtension);
