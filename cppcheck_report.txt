@@ -1,19 +1,19 @@
-src/Jsonpp_Validator.hpp:137:8: performance:inconclusive: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+src/Jsonpp_Validator.hpp:152:8: performance:inconclusive: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace). [functionStatic]
   bool VerifyIsJson(const char *filepath);
        ^
-src/Jsonpp_Validator.hpp:189:25: note: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace).
+src/Jsonpp_Validator.hpp:219:25: note: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace).
  inline bool Validator::VerifyIsJson(const char *filepath)
                         ^
-src/Jsonpp_Validator.hpp:137:8: note: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace).
+src/Jsonpp_Validator.hpp:152:8: note: Technically the member function 'json::Validator::VerifyIsJson' can be static (but you may consider moving to unnamed namespace).
   bool VerifyIsJson(const char *filepath);
        ^
-src/Jsonpp_Validator.hpp:72:3: style: Class 'Validator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+src/Jsonpp_Validator.hpp:87:3: style: Class 'Validator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   Validator(const char *filepath, bool verifyFileExtension = true);
   ^
-src/Jsonpp_Validator.hpp:77:3: style: Class 'Validator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+src/Jsonpp_Validator.hpp:92:3: style: Class 'Validator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   Validator(char *buffer) { CheckFromBuffer(buffer); }
   ^
-src/Jsonpp_Validator.hpp:192:26: style: Unsigned expression 'f.find(".json")' can't be negative so it is unnecessary to test it. [unsignedPositive]
+src/Jsonpp_Validator.hpp:222:26: style: Unsigned expression 'f.find(".json")' can't be negative so it is unnecessary to test it. [unsignedPositive]
   return f.find(".json") >= 0 ? true : false;
                          ^
 tests/benchmark/benchmark.cpp:22:36: style: The scope of the variable 'actual' can be reduced. [variableScope]
